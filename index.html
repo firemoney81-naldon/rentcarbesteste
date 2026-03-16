@@ -1,23 +1,568 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- Schema.org FAQ 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "개인사업자 차량리스의 가장 큰 장점은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "가장 큰 장점은 세금 혜택입니다. 차량 관련 비용(리스료, 보험료, 정비료 등)을 사업 운영 경비로 처리하여 소득세를 절감할 수 있으며, 특히 일부 업종의 경우 부가세 환급도 받을 수 있습니다. 초기 비용 부담을 줄이는 것도 중요한 장점입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "장기렌트와 개인사업자 리스는 어떤 차이가 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "장기렌트는 일반 '하, 허, 호' 번호판을 사용하며 보험료가 렌트료에 포함되어 보험 경력이 단절될 수 있습니다. 반면 리스는 일반 번호판을 사용하고 보험을 개인이 가입하여 보험 경력을 유지할 수 있습니다. 부가세 환급 가능 여부와 만기 시 차량 처리 방식(인수/반납/재리스) 등에서 차이가 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "리스 계약 시 초기 비용(보증금)은 무조건 필요한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아닙니다. 보증금 없는 무보증 리스 상품도 있습니다. 보증금은 월 리스료를 낮추는 효과가 있지만, 초기 비용 부담이 크다는 단점이 있습니다. 신용 등급이 높다면 무보증 리스도 충분히 가능하며, 초기 비용이 전혀 없는 '0원 리스' 상품도 존재합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "개인사업자가 차량리스를 선택할 때 어떤 점을 주의해야 하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "첫째, 총 리스 비용과 잔존 가치를 꼼꼼히 비교해야 합니다. 둘째, 중도 해지 수수료를 확인해야 합니다. 셋째, 운행 거리가 많은 사업자라면 연간 운행 거리를 제한하는 리스 계약보다는 무제한 계약을 고려해야 합니다. 넷째, 개인의 신용도에 따라 이자율(금리)이 달라지므로 여러 업체의 견적을 비교하는 것이 필수적입니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+  <style>
+    :root {
+      --primary-color: #004D40; /* 짙은 녹색 계열 */
+      --secondary-color: #4CAF50; /* 부드러운 녹색 */
+      --accent-color: #C8E6C9; /* 연한 녹색 */
+      --highlight-color: #F1F8E9; /* 아주 연한 녹색/베이지 */
+      --text-color: #2D3E50; /* 짙은 텍스트 색상 */
+      --bg-light: #F9FBE7; /* 밝은 배경 */
+      --bg-white: #ffffff;
+      --btn-color: #FF7043; /* 주황색 계열 CTA 버튼 */
+      --btn-hover: #F4511E;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin:0; padding:0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+      line-height:1.7; /* 가독성을 위해 높임 */
+    }
+    .container {
+      max-width: 1100px; /* 너비 확장 */
+      margin:0 auto;
+      padding:0 20px;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--bg-white);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      font-weight:900; /* 굵게 */
+    }
+    header h1 a {
+      color: var(--bg-white);
+      text-decoration: none;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      color: var(--bg-white);
+      text-align: center;
+      padding: 90px 20px;
+    }
+    .hero h1 {
+      font-size: 3.8em; /* 폰트 크기 강조 */
+      margin-bottom: 20px;
+      font-weight:900;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .hero p {
+      font-size: 1.5em;
+      margin-bottom: 35px;
+      font-weight: 500;
+    }
+    .cta-btn {
+      background-color: var(--btn-color);
+      color: var(--bg-white);
+      padding: 18px 45px;
+      font-size:1.4em;
+      font-weight: bold;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-3px);
+    }
+    .compare-form-box {
+      background-color: var(--bg-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 그림자 강화 */
+      margin-top: 30px;
+    }
+    .compare-form-box h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size:2.4em;
+      font-weight:700;
+    }
+    .compare-form-box p {
+      color: #555;
+      font-size: 1.1em;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .compare-form-box label {
+      display: block;
+      margin-bottom:8px;
+      font-weight:500;
+      color: var(--primary-color);
+      font-size: 1.1em;
+    }
+    .compare-form-box input, .compare-form-box select {
+      width:100%;
+      padding:14px;
+      margin-bottom:20px;
+      border:1px solid #ddd;
+      border-radius:8px;
+      box-sizing:border-box;
+      font-size:1em;
+    }
+    .content-section {
+      margin-top: 40px;
+      background-color: var(--bg-white);
+      padding: 60px 0;
+      border-radius:10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .content-section h2 {
+      font-size: 3em; /* 폰트 크기 강조 */
+      color: var(--primary-color);
+      margin-bottom:30px;
+      font-weight:900;
+      text-align:center;
+      line-height:1.3;
+    }
+    .content-section h3 {
+      font-size:2.2em;
+      color: var(--primary-color);
+      margin-top:40px;
+      margin-bottom:20px;
+      font-weight:700;
+      border-bottom: 2px solid var(--accent-color); /* 시각적 계층 구조 강화 */
+      padding-bottom: 10px;
+    }
+    .content-section h4 {
+      font-size:1.6em;
+      color: var(--secondary-color);
+      margin-top:30px;
+      margin-bottom:15px;
+      font-weight:600;
+    }
+    .feature-grid {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top:30px;
+    }
+    .feature-grid .item {
+      width: calc(33.33% - 20px);
+      margin:10px;
+      padding:30px; /* 패딩 증가 */
+      background-color: var(--highlight-color);
+      border-radius:12px;
+      text-align:center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-grid .item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .feature-grid .item img {
+      width:90px; height:90px; /* 아이콘 크기 증가 */
+      margin-bottom:20px;
+    }
+    .feature-grid .item h3 {
+      font-size:1.8em;
+      font-weight:700;
+      color: var(--primary-color);
+      margin-bottom:10px;
+      border-bottom: none;
+    }
+    .keyword-list {
+      list-style:none;
+      padding:0;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top:30px;
+    }
+    .keyword-list li {
+      background-color: var(--secondary-color);
+      color: var(--bg-white);
+      padding:10px 20px;
+      margin:5px;
+      border-radius:25px;
+      font-weight:500;
+      font-size:1.1em;
+      transition: background-color 0.3s;
+    }
+    .keyword-list li:hover {
+        background-color: var(--primary-color);
+    }
+    .faq-item {
+      border-bottom:1px solid #ddd;
+      padding:20px 0;
+    }
+    .faq-item h3 {
+      cursor:pointer;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      font-size:1.6em; /* 폰트 크기 증가 */
+      color: var(--primary-color);
+      border-bottom: none;
+    }
+    .faq-item h3::after {
+      content: '+';
+      font-size:1.8em;
+      color: var(--secondary-color);
+      transition: transform 0.3s;
+      margin-left: 10px;
+    }
+    .faq-item.active h3::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      display: none;
+      padding:15px 0 10px 0;
+      color:#555;
+      font-size:1.1em;
+      background-color: var(--highlight-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+    .faq-item.active p {
+      display: block;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.1em;
+    }
+    th {
+        background-color: var(--primary-color);
+        color: var(--bg-white);
+        font-weight: 700;
+    }
+    tr:nth-child(even) {
+        background-color: var(--bg-light);
+    }
+    .chart-box {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
+    .chart-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    footer {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      text-align:center;
+      padding: 40px 20px;
+      font-size:0.9em;
+    }
+    footer a {
+      color: var(--bg-white);
+      text-decoration:none;
+      margin:0 10px;
+    }
+    footer a:hover {
+      text-decoration:underline;
+    }
+    /* 미디어 쿼리 */
+    @media (max-width:1000px) {
+        .feature-grid .item { width: calc(50% - 20px); }
+    }
+    @media (max-width:768px) {
+      .hero h1 { font-size:2.8em; }
+      .hero p { font-size:1.3em; }
+      .cta-btn { padding:15px 30px; font-size:1.2em; }
+      .compare-form-box { padding:25px; }
+      .content-section h2 { font-size:2.4em; }
+      .content-section h3 { font-size:1.8em; }
+      .feature-grid .item { width:100%; margin:10px 0; }
+      .keyword-list li { margin:3px; font-size:0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">개인사업자 차량리스 전문 비교</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>개인사업자 차량리스 최저가 견적 비교</h1>
+        <p>현명한 개인사업자를 위한 세금 절감, 비용 효율화, 투명한 견적 비교 서비스</p>
+        <div class="compare-form-box">
+          <h2>맞춤형 무료 견적 요청하기</h2>
+          <p>간단한 정보 입력으로 여러 리스사/렌트사들의 실시간 최저가 견적을 비교해 드립니다.</p>
+          <form action="#" method="post">
+            <label for="carModel">원하는 차량 모델</label>
+            <input type="text" id="carModel" name="carModel" placeholder="예: 제네시스 G80, 쏘렌토 등" required>
+            <label for="leaseType">희망 계약 유형</label>
+            <select id="leaseType" name="leaseType" required>
+                <option value="">선택하세요</option>
+                <option value="lease">개인사업자 리스</option>
+                <option value="rental">장기렌트</option>
+            </select>
+            <label for="period">희망 계약 기간 (개월)</label>
+            <select id="period" name="period" required>
+                <option value="">선택하세요</option>
+                <option value="36">36개월</option>
+                <option value="48">48개월</option>
+                <option value="60">60개월</option>
+            </select>
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+            <button type="submit" class="cta-btn">무료 견적 요청</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>왜 개인사업자에게 차량리스가 최선의 선택일까요?</h2>
+        <div class="feature-grid">
+          <div class="item">
+            <img src="https://images.pexels.com/photos/3943717/pexels-photo-3943717.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="세금 절감 아이콘">
+            <h3>압도적인 세금 절감</h3>
+            <p>차량 운용 비용 전액을 사업 경비로 인정받아 소득세(종합소득세)를 줄일 수 있습니다. (2026년 기준)</p>
+          </div>
+          <div class="item">
+            <img src="https://images.pexels.com/photos/4386348/pexels-photo-4386348.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="초기 비용 절감 아이콘">
+            <h3>초기 비용 최소화</h3>
+            <p>차량 구매 시 발생하는 취득세, 등록세, 공채, 보험료 등 초기 목돈 지출을 줄여 사업 자금을 유연하게 활용할 수 있습니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://images.pexels.com/photos/1018516/pexels-photo-1018516.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="편리한 관리 아이콘">
+            <h3>편리한 차량 관리</h3>
+            <p>정비 서비스 포함 상품 선택 시 차량 유지 및 관리에 드는 시간과 노력을 절약하여 사업에 집중할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+        <ul class="keyword-list">
+          <li>#개인사업자차량리스</li>
+          <li>#사업자리스세금</li>
+          <li>#장기렌트비교</li>
+          <li>#무보증리스</li>
+          <li>#리스견적비용</li>
+          <li>#저렴한리스업체</li>
+          <li>#법인리스장점</li>
+          <li>#자동차리스순위</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>개인사업자 차량리스 vs 장기렌트 vs 신차 할부 구매 심층 비교</h2>
+        <p>개인사업자가 차량을 운용하는 방식은 크게 리스, 장기렌트, 할부 구매 세 가지로 나눌 수 있습니다. 각각의 장단점을 명확히 파악하고 사업자 환경에 맞는 최적의 선택을 하는 것이 중요합니다. 특히 2026년 세법 기준에 따라 절세 혜택의 차이가 발생할 수 있으므로, 전문가와 상담을 통해 결정하는 것이 가장 확실한 방법입니다.</p>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>개인사업자 차량리스</th>
+                <th>개인사업자 장기렌트</th>
+                <th>신차 할부 구매</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>차량 번호판</strong></td>
+                <td>일반 번호판 (하, 호 제외)</td>
+                <td>렌트 전용 번호판 (하, 허, 호)</td>
+                <td>일반 번호판</td>
+              </tr>
+              <tr>
+                <td><strong>차량 소유 명의</strong></td>
+                <td>리스사 (금융사) 명의</td>
+                <td>렌트사 명의</td>
+                <td>개인사업자 명의</td>
+              </tr>
+              <tr>
+                <td><strong>보험 처리</strong></td>
+                <td>개인 보험 가입 (경력 인정)</td>
+                <td>렌트사 단체 보험 포함 (경력 단절)</td>
+                <td>개인 보험 가입 (경력 인정)</td>
+              </tr>
+              <tr>
+                <td><strong>세금 혜택 (비용처리)</strong></td>
+                <td>월 리스료 전액 비용처리 가능 (연간 한도 1,500만원)</td>
+                <td>월 렌트료 전액 비용처리 가능 (연간 한도 1,500만원)</td>
+                <td>감가상각비, 유류비 등 비용처리 (연간 한도 1,500만원)</td>
+              </tr>
+              <tr>
+                <td><strong>부가세 환급 여부</strong></td>
+                <td>경차/승합차/화물차 등 일부 차종만 가능</td>
+                <td>일부 업종 경차/승합차/화물차 등 가능</td>
+                <td>경차/승합차/화물차 등 일부 차종만 가능</td>
+              </tr>
+              <tr>
+                <td><strong>만기 시 선택</strong></td>
+                <td>인수, 반납, 재리스 가능</td>
+                <td>인수, 반납 가능</td>
+                <td>소유권 이전</td>
+              </tr>
+              <tr>
+                <td><strong>초기 비용</strong></td>
+                <td>보증금 또는 무보증(신용도에 따라 다름)</td>
+                <td>보증금 또는 무보증(신용도에 따라 다름)</td>
+                <td>선납금 또는 할부 원금, 취등록세 발생</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>세부 내용 비교: 부가세 환급과 보험료</h4>
+        <p>개인사업자 리스 상품을 선택하는 가장 큰 이유는 세금 혜택입니다. 리스료를 전액 비용 처리하여 종합소득세를 절감하는 것이 일반적이며, 특히 운수업이나 일부 도소매업종의 경우 차량 종류에 따라 부가세 환급 혜택까지 받을 수 있습니다. 2026년 기준, 경차, 9인승 이상 승합차, 밴 등 업무용 차량으로 분류되는 차종은 부가세 환급 대상에 해당됩니다. 반면 승용차는 부가세 환급이 불가능합니다.</p>
+        <p>보험 측면에서는 장기렌트와 리스가 큰 차이를 보입니다. 장기렌트는 렌트사 명의의 단체 보험에 가입하게 되어 사고가 나도 개인 보험료 할증이 없다는 장점이 있습니다. 그러나 개인의 보험 경력이 단절되어 추후 신차 구매 시 보험료가 높아질 수 있습니다. 리스는 개인이 보험에 가입하므로 보험 경력을 유지할 수 있으며, 기존 보험 경력이 길다면 오히려 더 저렴하게 이용할 수 있습니다.</p>
+
+        <h3 style="margin-top:50px;">개인사업자 리스 선택 시 고려해야 할 핵심 요소</h3>
+        <p>리서치 결과에 따르면 많은 개인사업자들은 월 리스료 금액만을 보고 결정하는 경향이 있습니다. 하지만 총 비용을 비교하고, 자신의 사업 환경에 맞는 상품을 선택하는 것이 중요합니다. 단순히 '싼곳'을 찾기보다는 '가장 효율적인 상품'을 선택해야 합니다. "평균 리스 비용"은 차량 모델, 계약 기간, 초기 보증금 설정에 따라 크게 달라지므로, 여러 업체의 견적을 상세히 비교해야 합니다.</p>
+        <ul>
+            <li><strong>초기 비용(보증금/선납금):</strong> 초기 비용을 많이 납부할수록 월 리스료는 낮아집니다. 초기 목돈 지출을 줄이려면 '무보증 리스'를 고려해 볼 수 있습니다.</li>
+            <li><strong>잔존가치:</strong> 만기 시 차량의 예상 가치를 의미합니다. 잔존가치를 높게 설정하면 월 리스료가 낮아지지만, 만기 시 인수 비용이 높아집니다. 반납을 염두에 둔다면 잔존가치를 높게 설정하는 것이 유리하며, 인수를 원한다면 잔존가치를 낮게 설정하는 것이 총 비용 측면에서 유리합니다.</li>
+            <li><strong>연간 운행 거리:</strong> 사업용 차량의 경우 연간 주행 거리가 매우 중요합니다. 리스 계약 시 정해진 연간 주행 거리를 초과하면 만기 시 패널티가 발생하므로, 주행 거리가 많은 사업자는 무제한 주행거리 옵션을 선택하거나 주행 거리가 긴 상품을 선택해야 합니다.</li>
+            <li><strong>중도 해지 수수료:</strong> 계약 기간 내 해지할 경우 발생하는 수수료가 높습니다. 사업의 불확실성을 고려하여 중도 해지 리스크를 최소화할 수 있는 상품을 선택해야 합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>2026년 개인사업자 세금 절세 전략: 리스를 활용한 비용 처리</h2>
+        <p>개인사업자에게 있어 차량 관련 비용을 어떻게 처리하느냐에 따라 연말 종합소득세 정산 결과가 크게 달라집니다. 특히 고소득 개인사업자의 경우, 리스를 통해 비용 처리를 하는 것이 절세의 핵심 전략 중 하나입니다. 2026년 세법에 따르면, 업무용 승용차 관련 비용(리스료, 유류비, 자동차세, 보험료 등)은 연간 1,500만원까지 비용으로 인정됩니다. 차량 운행 기록부를 작성하지 않을 경우 1,000만원까지 인정받을 수 있습니다.</p>
+
+        <div class="chart-box">
+            <h4>개인사업자 리스 비용처리 절세 효과 예시</h4>
+            <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="절세 효과 그래프 이미지">
+            <p style="text-align: center; font-style: italic; color: #666; font-size: 0.9em;">(출처: Pexels, 시각 자료는 예시이며 실제 절세액은 소득 구간 및 세율에 따라 다릅니다.)</p>
+        </div>
+
+        <h4>세부 절세 팁: 부가세 환급 대상 여부 확인</h4>
+        <p>개인사업자가 차량리스를 이용할 때 부가세 환급을 받을 수 있는지는 매우 중요한 혜택입니다. 모든 차량이 부가세 환급 대상이 되는 것은 아닙니다. 국세청 기준에 따라 업무용 차량 중에서도 경차, 9인승 이상 승합차(카니발, 스타리아 등), 화물차 등은 부가세 환급이 가능합니다. 이외의 승용차(세단, SUV 등)는 부가세 환급 대상에서 제외됩니다. 만약 부가세 환급이 가능하다면, 리스료에 포함된 부가세(차량 가격의 10%)를 돌려받을 수 있어 실질적인 리스 비용을 크게 낮출 수 있습니다. 이는 장기렌트와 비교할 때도 고려해야 할 핵심적인 차이점입니다.</p>
+
+        <h4>리스료가 저렴한곳을 찾는 방법</h4>
+        <p>많은 개인사업자들은 네이버나 구글에서 "개인사업자 차량리스 저렴한곳"을 검색하며 최저가 견적을 찾습니다. 하지만 단순히 월 리스료가 싼 곳을 고르기보다, 총 리스 비용과 서비스를 비교해야 합니다. 일부 업체는 잔존가치를 과도하게 높게 설정하여 월 리스료를 낮춰 보이지만, 만기 시 인수 비용이 높아져 오히려 총 비용이 증가할 수 있습니다. 꼼꼼한 비교 견적을 통해 "평균 리스 비용"보다 저렴한 합리적인 상품을 찾는 것이 중요합니다.</p>
+        <p>최근에는 여러 리스 전문 업체들이 경쟁적으로 "할인 이벤트"나 "사은품 지급", "현금지원" 등을 진행하기도 합니다. 신규 가입 혜택을 잘 활용하고, 여러 업체들의 "순위"와 "내돈내산 후기"를 참고하여 신뢰성 있는 "전문 업체"를 선택해야 합니다. "견적 요청" 시 차량 모델과 옵션을 명확히 제시하여 정확한 "예상 금액"을 받아보세요.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+
+        <div class="faq-item">
+          <h3>Q1. 개인사업자 리스 계약 시 필요한 서류는 무엇인가요?</h3>
+          <p>A. 기본적인 신분증 외에도 사업자 등록증, 소득금액증명원 또는 부가가치세 과세표준증명원 등 소득을 증빙할 수 있는 서류가 필요합니다. 신용 등급에 따라 요구되는 서류가 달라질 수 있으므로, 정확한 견적을 요청하기 전에 미리 준비하는 것이 좋습니다. 신용도가 낮더라도 일부 업체에서는 보증금을 높이는 조건으로 가입을 허용하기도 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q2. 리스 계약 기간은 몇 년이 적당한가요?</h3>
+          <p>A. 리스 계약 기간은 일반적으로 24개월(2년)부터 60개월(5년)까지 다양합니다. 계약 기간이 길어질수록 월 리스료는 저렴해지지만, 총 이자 비용은 증가할 수 있습니다. 차량 교체 주기가 짧다면 36개월을 선호하고, 장기간 운용하며 월 비용을 낮추고 싶다면 48~60개월을 선택하는 것이 일반적입니다. "장단점"을 고려하여 사업 계획에 맞게 선택해야 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q3. 리스 만기 시 차량을 인수하는 것이 좋을까요, 반납하는 것이 좋을까요?</h3>
+          <p>A. 이는 만기 시 차량의 잔존가치와 중고차 시세를 비교하여 결정합니다. 만약 중고차 시세가 잔존가치보다 높다면 차량을 인수하여 되파는 것이 경제적으로 유리합니다. 반대로 중고차 시세가 잔존가치보다 낮거나, 새로운 차량으로 교체하고 싶다면 반납을 선택하는 것이 좋습니다. 만기 시 인수를 고려한다면 계약 초기에 잔존가치를 낮게 설정하는 것이 유리하며, 이는 "비용" 계산 시 매우 중요한 부분입니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q4. 유튜브나 인스타그램에서 본 리스 상품과 실제 견적이 다른가요?</h3>
+          <p>A. 네, 다를 수 있습니다. 광고에서 제시하는 "저렴한 가격"은 보통 최소 계약 기간, 최고 잔존가치 설정, 높은 보증금 등 가장 유리한 조건으로 계산된 '예상 금액'일 가능성이 높습니다. 개인의 신용 등급, 계약 조건, 차량 옵션 등에 따라 실제 "최종 견적"은 달라지므로, 반드시 정식 "견적 요청"을 통해 정확한 "평균 가격"을 확인해야 합니다.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+        <ul>
+          <li><a href="https://www.nts.go.kr/nts/na/ntt/selectNttList.do?mi=2169&menu=3" target="_blank" rel="noopener">국세청(NTS) - 업무용 승용차 관련 비용 처리 기준</a></li>
+          <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EB%93%9D%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9" target="_blank" rel="noopener">국가법령정보센터 - 소득세법 시행령 (업무용승용차 관련 비용 손금불산입 등)</a></li>
+          <li><a href="https://www.sbiz.or.kr/sbiz/main.do" target="_blank" rel="noopener">소상공인시장진흥공단 (SBA) - 개인사업자 지원 정보</a></li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%9E%A5%EA%B8%B0%EC%B0%A8%EB%9F%89%EB%A0%8C%ED%8A%B8" target="_blank" rel="noopener">위키백과 - 장기차량렌트 (리스 비교 정보 포함)</a></li>
+          <li><a href="https://www.kofia.or.kr/index.html" target="_blank" rel="noopener">한국금융투자협회 (KOFIA) - 금융상품 정보</a></li>
+        </ul>
+        <p>위 자료들은 개인사업자 차량리스 선택 시 법적 기준, 세금 혜택 조건, 금융 상품 비교 등에 유용한 정보를 제공합니다. 정확한 정보 습득을 통해 현명한 선택을 하세요.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', event => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+  
